@@ -1,21 +1,26 @@
-mod magic;
-mod error;
-mod version;
-mod common;
-mod constant;
-mod access;
-mod this;
-mod superior;
-mod interface;
-mod field;
-mod attribute;
-mod method;
-mod class;
-
 use std::fs::File;
 use std::io::BufReader;
 
+mod access;
+mod args;
+mod attribute;
+mod class;
+mod common;
+mod constant;
+mod error;
+mod field;
+mod interface;
+mod magic;
+mod method;
+mod superior;
+mod this;
+mod version;
+
+use common::FromReader;
+
 fn main() {
-  let class = File::open("/home/whosethink/Downloads/Color.class").unwrap();
-  let mut reader = BufReader::new(class);
+  let file = File::open("/home/whosethink/Downloads/Color.class").unwrap();
+  let mut reader = BufReader::new(file);
+  let c = class::Class::from_reader(&mut reader).unwrap();
+  println!("{:?}", c);
 }
