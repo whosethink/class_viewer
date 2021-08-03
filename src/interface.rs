@@ -2,6 +2,7 @@ use crate::common;
 use crate::error;
 use std::io::Read;
 
+#[derive(Debug)]
 pub struct Interfaces {
   count: u16,
   interfaces: Vec<Interface>
@@ -19,6 +20,7 @@ impl common::FromReader<Interfaces> for Interfaces {
   }
 }
 
+#[derive(Debug)]
 pub struct Interface {
   name_index: u16
 }

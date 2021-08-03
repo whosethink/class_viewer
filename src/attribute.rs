@@ -2,6 +2,7 @@ use crate::common;
 use crate::error;
 use std::io::Read;
 
+#[derive(Debug)]
 pub struct Attributes {
   count: u16,
   attributes: Vec<Attribute>
@@ -9,10 +10,17 @@ pub struct Attributes {
 
 impl common::FromReader<Attributes> for Attributes {
   fn from_reader(reader: &mut dyn Read) -> error::Result<Attributes> {
-    todo!()
+    let count = common::read_be_u16_from_reader(reader)?;
+    let mut attributes = vec![];
+    for _i in 0..count {
+      let attribute = Attribute::from_reader(reader)?;
+      attributes.push(attribute);
+    }
+    Ok(Attributes { count, attributes })
   }
 }
 
+#[derive(Debug)]
 pub struct Attribute {
   name_index: u16,
   length: u32,

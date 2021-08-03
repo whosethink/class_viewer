@@ -22,5 +22,5 @@ fn main() {
   let file = File::open("/home/whosethink/Downloads/Color.class").unwrap();
   let mut reader = BufReader::new(file);
   let c = class::Class::from_reader(&mut reader).unwrap();
-  println!("{:?}", c);
+  println!("{}", c.to_string());
 }

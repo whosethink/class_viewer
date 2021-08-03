@@ -3,11 +3,13 @@ use crate::error;
 use crate::attribute;
 use std::io::Read;
 
+#[derive(Debug)]
 pub struct Fields {
   count: u16,
   fields: Vec<Field>
 }
 
+#[derive(Debug)]
 pub struct Field {
   access: u16,
   name_index: u16,

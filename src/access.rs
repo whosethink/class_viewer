@@ -1,6 +1,19 @@
+use crate::common;
+use crate::error;
+use std::io::Read;
+
+#[derive(Debug)]
 pub struct ClassAccessFlag {
   flag: u16,
 }
+
+impl common::FromReader<ClassAccessFlag> for ClassAccessFlag {
+  fn from_reader(reader: &mut dyn Read) -> error::Result<ClassAccessFlag> {
+    let flag = common::read_be_u16_from_reader(reader)?;
+    Ok(ClassAccessFlag { flag })
+  }
+}
+
 
 pub enum ClassAccessFlagEnum {
   Public,

@@ -3,6 +3,7 @@ use crate::error;
 use crate::attribute;
 use std::io::Read;
 
+#[derive(Debug)]
 pub struct Methods {
   count: u16,
   methods: Vec<Method>
@@ -20,6 +21,7 @@ impl common::FromReader<Methods> for Methods {
   }
 }
 
+#[derive(Debug)]
 pub struct Method {
   access: u16,
   name_index: u16,

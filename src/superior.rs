@@ -2,6 +2,7 @@ use std::io::Read;
 use crate::common;
 use crate::error;
 
+#[derive(Debug)]
 pub struct SuperClass {
   name_index: u16
 }
